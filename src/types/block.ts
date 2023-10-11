@@ -20,4 +20,12 @@ const BlockTC = schemaComposer.createObjectTC({
   }
 });
 
-export { BlockTC, BlockResponse };
+const DailyBlockEnergyTC = schemaComposer.createObjectTC({
+  name: "DailyBlockEnergy",
+  fields: {
+    date: "String",
+    energy: "Float"
+  }
+});
+
+export { BlockTC, BlockResponse, DailyBlockEnergyTC };
