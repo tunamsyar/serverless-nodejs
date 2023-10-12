@@ -138,3 +138,31 @@ yarn start
 
 The server will be ready at: `http://localhost:4000/graphql`
 
+## Makefile
+Added a Makefile to ease of installation and running the application
+```sh
+make install
+
+make start
+
+make start-redis
+
+make clean
+```
+
+## Tests
+
+I thought about adding a tests to the application. Using `jest` and some mock responses fixtures to
+ensure no actual api requests would be executed.
+
+Here's some thoughts on how to test the `daily_block` resolver:
+
+1. Capture responses from `/blocks/$timestamp_in_miliseconds`
+2. Capture responses from `/rawblock/$block_hash`
+3. Mock responses in test to respond using responses captured in 1 and 2
+4. Assert the outputs of the resolver
+5. Test cases:
+   1. Happy path
+      - Check fields
+      - Check if responses return nothing
+   2. Error handling
