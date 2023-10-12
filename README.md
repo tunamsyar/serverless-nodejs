@@ -49,10 +49,52 @@ development team will need an API (preferably GraphQL) to connect to which will 
 be able to perform the following operations (already sorted by priority):
 
 - Provide the energy consumption per transaction for a specific block.
+  ```
+  SAMPLE:
+    {
+      block_energy(
+        blockHash: "0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103"
+      ){
+          blockHash,
+          size,
+          energy,
+          transactions{
+              transactionHash,
+              size,
+              energy
+        }
+      }
+    }
+  ```
 - Provide the total energy consumption per day in the last `x` number of days.
+  ```
+  SAMPLE:
+    {
+      daily_block_energy_consumption(
+        numOfDays: 1
+      ){
+        date,
+        energy
+      }
+    }
+  ```
 - Advanced Feature: Optimize the number of calls made to the Blockchain API to avoid asking for the
   same information multiple times.
+  ```
+  Redis server port:6379
+  ```
 - Expert Feature: Provide the total energy consumption of all transactions performed by a specific wallet address.
+  ```
+  SAMPLE:
+    {
+      wallet_energy(
+        address: "1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F"
+      ){
+        address,
+        energy
+      }
+    }
+  ```
 
 Even if it is too soon in the product's lifetime to think about non-functional requirements, it will be beneficial to
 build it considering that we hope to scale the solution and avoid significant refactoring.
