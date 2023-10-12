@@ -20,8 +20,8 @@ const DailyBlockEnergyConsumptionResolver = schemaComposer.createResolver({
     await redis_client.connect();
 
     // store date and hash blocks
-    type someObject = { date: string, blockHashes: Array<string>};
-    let dateMap: someObject[] = []
+    type blockObject = { date: string, blockHashes: Array<string>};
+    let dateMap: blockObject[] = []
 
     // get list of hash blocks from api and map
     for (let day = 0; day < numOfDays; day++) {
@@ -64,7 +64,9 @@ const DailyBlockEnergyConsumptionResolver = schemaComposer.createResolver({
           if (cachedBlock) {
             result = JSON.parse(cachedBlock);
           } else {
-            result = await blockchainApi.get<BlockResponse>(`/rawblock/${block}`);
+            const { data } = await blockchainApi.get<BlockResponse>(`/rawblock/${block}`);
+            result = data
+            await redis_client.set(`block-${block}`, JSON.stringify(result))
           }
 
           return Number(result.size);
