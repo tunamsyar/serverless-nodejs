@@ -32,6 +32,8 @@ class CacheService {
 
       await redis_client.set(this.cacheKey, JSON.stringify(data));
 
+      await redis_client.disconnect();
+
     } catch(err) {
       console.error(err);
     }

@@ -1,8 +1,6 @@
-import { format } from "path";
 import { blockchainApi } from "../api/blockchain";
 import { BlockResponse } from "../types/block";
 import { CacheService } from "./cache_service";
-
 class BlockEnergyService {
   result: any;
   cached: any;
@@ -10,7 +8,7 @@ class BlockEnergyService {
   energyCost: number;
   blockHash: string;
 
-  constructor(blockHash:any) {
+  constructor(blockHash:string) {
     this.energyCost = 4.56;
     this.redisBlockKey = `block-${blockHash}`;
     this.blockHash = blockHash;

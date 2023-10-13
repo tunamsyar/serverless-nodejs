@@ -9,7 +9,7 @@ const BlockEnergyResolver = schemaComposer.createResolver({
     blockHash: "ID!"
   },
   resolve: async({args}) => {
-    const { blockHash } = args;
+    const { blockHash } = args as { blockHash: string };
     const blockEnergyService = new BlockEnergyService(blockHash);
 
     let result;
