@@ -14,11 +14,7 @@ const DailyBlockEnergyConsumptionResolver = schemaComposer.createResolver({
     const { numOfDays } = args as { numOfDays: number };;
     const dailyBlockService = new DailyBlockService(numOfDays);
 
-    let result;
-
-    result = await dailyBlockService.getData();
-
-    return result;
+    return await dailyBlockService.getData();
   }
 });
 
