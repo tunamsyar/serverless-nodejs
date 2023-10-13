@@ -23,6 +23,7 @@ class CacheService {
 
     } catch(err) {
       console.error(err);
+      throw(err);
     }
   }
 
@@ -36,6 +37,7 @@ class CacheService {
 
     } catch(err) {
       console.error(err);
+      throw(err);
     }
   }
 }

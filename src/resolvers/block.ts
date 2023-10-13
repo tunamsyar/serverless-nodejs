@@ -12,11 +12,7 @@ const BlockEnergyResolver = schemaComposer.createResolver({
     const { blockHash } = args as { blockHash: string };
     const blockEnergyService = new BlockEnergyService(blockHash);
 
-    let result;
-
-    result = await blockEnergyService.getData();
-
-    return result;
+    return await blockEnergyService.getData();
   }
 });
 
